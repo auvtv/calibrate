@@ -1,0 +1,71 @@
+{
+  "version": "1.0",
+  "description": "Calibration Framework — Skill Catalog",
+  "categories": {
+    "shared": {
+      "description": "Skills that work on any project, framework-agnostic",
+      "skills": [
+        {
+          "name": "calibrate",
+          "path": "skills/shared/calibrate/SKILL.md",
+          "description": "Validate workspace configuration, review sessions, manage skill catalog",
+          "requires": ["serena"],
+          "tags": ["meta", "config", "audit"]
+        },
+        {
+          "name": "refactor",
+          "path": "skills/shared/refactor/SKILL.md",
+          "description": "Serena-powered multi-file refactoring with scope verification",
+          "requires": ["serena"],
+          "tags": ["editing", "refactoring", "multi-file"]
+        },
+        {
+          "name": "blast-radius",
+          "path": "skills/shared/blast-radius/SKILL.md",
+          "description": "Analyze impact of changing a symbol before making edits",
+          "requires": ["serena"],
+          "tags": ["analysis", "safety", "read-only"]
+        },
+        {
+          "name": "explore-arch",
+          "path": "skills/shared/explore-arch/SKILL.md",
+          "description": "Map project architecture using symbolic tools",
+          "requires": ["serena"],
+          "tags": ["exploration", "architecture", "onboarding"]
+        },
+        {
+          "name": "init-project",
+          "path": "skills/shared/init-project/SKILL.md",
+          "description": "Bootstrap a new project: detect stack, customize CLAUDE.md, install skills, create Serena memories",
+          "requires": ["serena"],
+          "tags": ["meta", "onboarding", "setup", "init"]
+        }
+      ]
+    },
+    "web": {
+      "description": "Skills for web projects (Next.js, Node, Docker deployments)",
+      "skills": [
+        {
+          "name": "deploy-docker",
+          "path": "skills/web/deploy-docker/SKILL.md",
+          "description": "Deploy web app via Docker Compose to VPS with verification",
+          "requires": ["ssh-mcp"],
+          "tags": ["deployment", "docker", "vps"],
+          "stack_match": ["next.js", "docker", "nginx"]
+        }
+      ]
+    },
+    "mobile": {
+      "description": "Skills for mobile projects (Flutter, React Native)",
+      "skills": []
+    },
+    "ai": {
+      "description": "Skills for AI/ML projects (RAG, finetuning, pipelines)",
+      "skills": []
+    },
+    "devops": {
+      "description": "Skills for infrastructure and CI/CD",
+      "skills": []
+    }
+  }
+}
