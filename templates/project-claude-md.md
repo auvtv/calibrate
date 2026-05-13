@@ -13,9 +13,20 @@
 - Use `/refactor` for any multi-file code change
 - Use `/blast-radius <symbol>` before changing widely-referenced symbols
 - Use `/calibrate` periodically to verify workspace config
+- Use `/close-session` at the end of substantive sessions — writes a journal
+  entry to `.journal/YYYY-MM-DD-tema.md` (decisions with reason, deferrals,
+  blockers, collaboration patterns) and updates `.serena/memories/pending-work-actual.md`
+  as the live handoff. Skip for trivial sessions (≤2 messages, no commits).
 # Add project-specific skills below:
 # - Use `/deploy` for production deployments
 # - Use `/seed-db` for database seeding
+
+## Session Hygiene
+- `.journal/` is scaffolding (process metadata) — hidden directory, tracked in git
+- `.serena/memories/pending-work-actual.md` is the single live handoff file —
+  overwritten each session close, not accumulated by date
+- Journal is for metacognition (read in 3 months and understand why), not for
+  fast session startup — for that, read `pending-work-actual.md`
 
 ## Conventions
 # Add framework-specific conventions here. Examples:

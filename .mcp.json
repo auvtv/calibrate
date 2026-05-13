@@ -1,0 +1,20 @@
+{
+  "mcpServers": {
+    "serena": {
+      "type": "stdio",
+      "command": "uv",
+      "args": [
+        "run",
+        "--directory",
+        "/Users/andresusera/2programas/serena",
+        "serena",
+        "start-mcp-server",
+        "--context",
+        "ide-assistant",
+        "--project",
+        "/Users/andresusera/4consultoria/calibrate"
+      ],
+      "env": {}
+    }
+  }
+}

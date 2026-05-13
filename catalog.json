@@ -39,6 +39,13 @@
           "description": "Bootstrap a new project: detect stack, customize CLAUDE.md, install skills, create Serena memories",
           "requires": ["serena"],
           "tags": ["meta", "onboarding", "setup", "init"]
+        },
+        {
+          "name": "close-session",
+          "path": "skills/shared/close-session/SKILL.md",
+          "description": "Close a session by writing a structured journal entry to .journal/ and updating the live handoff in .serena/memories/pending-work-actual.md",
+          "requires": [],
+          "tags": ["meta", "journal", "session-hygiene", "handoff"]
         }
       ]
     },

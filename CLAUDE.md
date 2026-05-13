@@ -58,3 +58,8 @@ When writing or editing templates and docs, respect these boundaries — convent
 - All content is markdown. Maintain consistent heading hierarchy and formatting.
 - Skills reference Serena MCP tools (`get_symbols_overview`, `find_referencing_symbols`, `replace_symbol_body`, etc.) — these are real tool names, not placeholders.
 - The `/calibrate` skill (in `skills/shared/calibrate/SKILL.md`) is the meta-skill that validates the entire framework. Changes to the three-layer architecture must be reflected there.
+
+## Preferred Workflows
+
+- Use `/calibrate sync` after editing any `skills/shared/*/SKILL.md` to push the change into `~/.claude/skills/`
+- Use `/close-session` at the end of substantive sessions (skill/catalog/template changes that need rationale captured) — writes a journal to `.journal/` and updates `.serena/memories/pending-work-actual.md`. Skip for one-line typo fixes.
