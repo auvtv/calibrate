@@ -1,0 +1,137 @@
+# registro-atencion.yaml — RECONSTRUIDO 2026-06-02 desde el dump de Engram
+# (proyecto-sistema-atencion + convexo-activity-log). El original "entregado" el
+# 2026-05-24 nunca llegó a disco — baja de la ceguera C1. ESTE ES UN BORRADOR a
+# autorizar a mano por Andrés antes de moverlo a repo infra/.
+#
+# CONTRATO (del corpus): FUENTE de verdad del join repo↔punto + esqueleto
+# holárquico (estructura ESTABLE, autorizada a mano). El ESTADO (recencia) lo da
+# git, NO este archivo. `se_canaliza_en` es propiedad del punto en Engram, se
+# refleja acá solo como documentación. Proyección a Engram = side-effect del
+# reconciliador, no sync manual.
+
+version: 0  # reconstrucción inicial; subir a 1 al autorizar
+fecha_reconstruccion: 2026-06-02
+
+# Disposición: cómo trata el reconciliador cada caso repo↔punto.
+#   match            = repo mapea limpio a un punto
+#   fantasma         = código vivo SIN punto -> crear punto
+#   codigo-en-otro-lado = el punto existe, su código no está en su repo homónimo
+#   codigo-varado    = código perdido/no restaurado (backup) -> tirón de infra
+#   sin-codigo-correcto = punto relacional/meta/diseño, no espera repo
+
+esferas:
+
+  laboral:        # física dominante: tirón
+    puntos:
+      genexa:
+        repo: genexa
+        disposicion: match
+      garrapata:           # Misión Garrapata
+        repo: garrapattack
+        disposicion: fantasma   # repo MUY activo, sin space -> crear punto
+      trini:
+        repo: trini
+        disposicion: fantasma   # repo activo, sin space -> crear punto
+      observatorio:
+        repo: null
+        disposicion: sin-codigo-correcto   # propuesta/metodología con Equipos/Latitud
+      nicolas-litvan:      # cluster-cliente (= LVTGRP). Necesaria a nivel relación.
+        tipo: cluster-cliente
+        contiene:
+          prili:           # sub-cluster (holón)
+            tipo: sub-cluster
+            contiene:
+              prili-planta:
+                repo: prili        # contiene planta + el scanning origen de scanner-convexo
+                disposicion: match
+              prili-agentico:      # vertical IG
+                repo: null
+                disposicion: sin-codigo-correcto
+                se_canaliza_en: convexo-maquina-agentica
+              prili-agente:        # clasificador visual telar/pegada (PoC)
+                repo: null         # código en prili/agente/classifier (sub-path, no repo propio)
+                disposicion: codigo-en-otro-lado
+              prili-importaciones: # = Galenfix (merge 24-05)
+                repo: gale
+                alias: galenfix
+                disposicion: match
+          lvtgrp:          # real estate / alquiler oficinas
+            repo: gestiongastos
+            disposicion: fantasma   # sin space -> decidir punto o exclusión
+          shadowbot:       # vertical WhatsApp (POC LVTGRP -> luego Prili)
+            repo: shadowbot
+            disposicion: fantasma   # sin space -> crear punto
+            se_canaliza_en: convexo-maquina-agentica
+
+  convexo:        # física: NO uniforme (calibración R3)
+    puntos:
+      convexo-maquina-agentica:   # idea-central; física derivada/agregada
+        repo: null
+        disposicion: sin-codigo-correcto
+        es_idea_central: true
+        recibe: [prili-agentico, shadowbot]   # padre compartido (comparte_raiz)
+      scanner-convexo:            # idea-central; elevado del scanning de planta Prili
+        repo: null
+        disposicion: codigo-en-otro-lado
+        es_idea_central: true
+        elevado_de: prili-planta
+      plataforma-plugins:         # idea-central (30-05); ingeniería real en repo genexa
+        repo: null
+        disposicion: codigo-en-otro-lado
+        es_idea_central: true
+        elevado_de: genexa
+      calibrate:
+        repo: calibrate
+        disposicion: match
+      engram:
+        repo: engram               # OJO: path triple-anidado (engram/engram/engram)
+        disposicion: match
+      infra:                       # InfraClaude
+        repo: infra
+        disposicion: match
+        nota: plomería convexo; su silencio degrada todo lo demás (necesaria-ish)
+      convexo-colab:
+        repo: null
+        disposicion: sin-codigo-correcto   # parking que se autodeclara (no escalar)
+      kgis:
+        repo: null
+        disposicion: codigo-varado          # MVP en disco E001 perdido -> restaurar
+      convexo-referencias:
+        repo: null
+        disposicion: sin-codigo-correcto
+
+  personal:       # física: mixta (radios=tirón / regenerativo=necesaria)
+    puntos:
+      carape:                      # holón; candidato a sub-cluster
+        repo: null
+        disposicion: sin-codigo-correcto
+        sub:
+          carape-yurta: { disposicion: sin-codigo-correcto }   # refugio (diseño)
+          carape-radios: { disposicion: sin-codigo-correcto }  # telecom/mesh (tirón)
+          carape-regenerativo: { disposicion: sin-codigo-correcto }
+      canasta:                     # PROPIO (no Nicolás): productores biodinámicos
+        repo: canasta
+        disposicion: fantasma      # sin space -> decidir punto o exclusión
+
+  metacognitivo_relacional:   # física: necesaria
+    puntos:
+      sistema-atencion:
+        repo: null
+        disposicion: sin-codigo-correcto
+      yo-reflexiones:
+        repo: null
+        disposicion: sin-codigo-correcto
+
+# Plomería: NO son puntos; el reconciliador no juzga su silencio.
+excluidos:
+  - system-oauth
+  - system-invites
+  - system-meta
+  - system-serena
+  - gws-setup
+  - convexo-activity-log
+  - convexo-cockpit          # muerto (superseded por sistema-atencion)
+
+# Repos físicos detectados 2026-06-02 (recencia la da git, no este archivo):
+#   calibrate canasta gale garrapattack genexa gestiongastos infra prili shadowbot trini
+# Sin repo homónimo pero con punto: observatorio, scanner, panel-instagram, kgis, carape*, convexo-*
