@@ -46,6 +46,13 @@
           "description": "Close a session by writing a structured journal entry to .journal/ and updating the live handoff in .serena/memories/pending-work-actual.md",
           "requires": [],
           "tags": ["meta", "journal", "session-hygiene", "handoff"]
+        },
+        {
+          "name": "harvest-journal",
+          "path": "skills/shared/harvest-journal/SKILL.md",
+          "description": "Deposit the session journal into Engram's convexo-activity-log (CC-side bridge of the attention system). Closes the 'Engram blindness': CC work was invisible. Invoked by close-session.",
+          "requires": ["engram"],
+          "tags": ["meta", "engram", "bridge", "activity-log", "session-hygiene"]
         }
       ]
     },

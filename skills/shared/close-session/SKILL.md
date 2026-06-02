@@ -106,7 +106,19 @@ Este es el handoff vivo. Reglas:
   - Decisiones pendientes que requieren input del usuario
 - Si la sesión cerró sin trabajo en curso ("todo limpio, nada in-flight"), reflejarlo así explícitamente.
 
-### 6. Detectar candidates a auto-memory
+### 6. Depositar en Engram (harvest-journal)
+
+Si se escribió un journal, invocar la skill **`harvest-journal`** para depositar un
+entry equivalente en `convexo-activity-log` (Engram). Esto cierra la "ceguera de
+Engram": sin este paso, el trabajo en CC es invisible para el reconciliador del
+sistema de atención.
+
+- `harvest-journal` lee el journal recién escrito, autoría un entry (fuente
+  `claude-code`) y lo deposita con su script seguro (read-merge-write, dedup, asserts).
+- Si la sesión NO generó journal (trivial), saltear este paso.
+- Es idempotente: si ya se harvesteó, no duplica.
+
+### 7. Detectar candidates a auto-memory
 
 Si en la sesión emergió:
 - Feedback recurrente del usuario sobre cómo trabajar
@@ -115,11 +127,12 @@ Si en la sesión emergió:
 
 → Surfacearlo al usuario al final, preguntando si lo guarda como auto-memory. NO escribir auto-memories sin confirmar.
 
-### 7. Reportar al usuario
+### 8. Reportar al usuario
 
 Output breve (3-5 líneas):
 - Path del journal escrito
 - Path del pending-work-actual actualizado
+- Entry depositado en `convexo-activity-log` (resultado de harvest-journal)
 - Si hay candidates a auto-memory, listarlos para confirmación
 
 ## Argumentos opcionales
